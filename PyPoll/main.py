@@ -1,23 +1,23 @@
 import os
 import csv
  
-#print(os.getcwd())  
+
 #get the path to the csv data file
 csvpath = os.path.join("..",'..','..',"RICEHOU201906DATA1","HW","03-Python","Instructions","PyPoll","Resources","election_data.csv")
 #create an output text file in the same folder with main.py
 textpath = os.path.join("..","PyPoll","Election_Results.txt")
 
-#open the csvfile and read data into csvfile
+#open the csv file and read data into csvfile
 with open(csvpath,newline ="") as csvfile:
     csvreader = csv.reader(csvfile,delimiter = ",")
     csvheader = next(csvreader)
 
 # set the initial value for memory variables   
     total_vote = 0        #used to calculate the number of votes
-    Khan_vote = 0               
-    Li_vote = 0   
-    Correy_vote = 0   #
-    OTooley_vote = 0
+    Khan_vote = 0         #used to calculate the Khan's votes      
+    Li_vote = 0           #used to calculate the Li's votes  
+    Correy_vote = 0       #used to calculate the Correy's votes
+    OTooley_vote = 0      #used to calculate the O'Tooley's votes
    
     for row in csvreader:
         total_vote +=1                   #every row represent for a vote
