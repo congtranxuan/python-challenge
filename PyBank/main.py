@@ -5,7 +5,7 @@ import csv
 #get the path to the csv data file
 csvpath = os.path.join("..",'..','..',"RICEHOU201906DATA1","HW","03-Python","Instructions","PyBank","Resources","budget_data.csv")
 #create an output text file in the same folder with main.py
-textpath = os.path.join("Financial_analysis.text")
+textpath = os.path.join("..","PyBank","Financial_Analysis.txt")
 
 #open the csvfile and read data into csvfile
 with open(csvpath,newline ="") as csvfile:
