@@ -1,44 +1,41 @@
 import os
 import csv
-import us_states
+from us_states import us_state
+from split_string import split_str  
 
 csvpath = os.path.join("..",'..','..',"RICEHOU201906DATA1","HW","03-Python","ExtraContent","Instructions","PyBoss","employee_data.csv")
-outputcsv = os.path.join("..","ByBoss","newemployee_data.csv")
+outputcsv = os.path.join("..","PyBoss","employee_newdata.csv")
 
 with open(csvpath, newline = "")as csvfile:
-    csvreader = csv.reader(csvfile, delimiter =",")
-    csvheader = next(csvreader)
-    print(csvheader) 
+    with open (outputcsv,"w",newline = "") as csvwriter:
+        csvreader = csv.reader(csvfile, delimiter =",")
+        writer = csv.writer(csvwriter,delimiter = ",")
     
-    for row in csvreader:
-        name = []
-        DOB=[]
-        SSN =[]
-        names = [letter for letter in row[1]]
-        name = split_str(names," ")
+        for row in csvreader:
+            line = []
+            name = []
+            date =[]
+            SSN =[]
+            if row[1]=="Name":
+                line = [row[0],"First Name","Last Name",row[2],row[3],row[4]]
+                
+            else:
+                names = [letter for letter in row[1]]
+                name = split_str(names," ")
+                dates = [letter for letter in row[2]]
+                date = split_str(dates,"-")
+                ssns = [letter for letter in row[3]]
+                ssn = split_str(ssns,"-")
+                line = [row[0],name[0],name[1],str(date[1])+"/"+str(date[2])+"/"+str(date[0]),"***-**-"+str(ssn[2]),us_state[row[4]]]
+            writer.writerow(line)
+
+
             
 
 
 
 
-def split_str(list,a):
-    separate=[]
-    inter = []
-    for i in range(len(list)):
-        if list[i] == a: 
-            result = ""
-            for k in inter:
-                result += str(k)
-            separate.append(result)
-            inter = []
-            continue
-        else: inter.append(list[i])
-        if i == (len(list)-1):
-            result = ""
-            for k in inter:
-                result += str(k)
-            separate.append(result)
-    return separate
+
 
 
 

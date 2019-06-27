@@ -1,5 +1,5 @@
 
-us_state_abbrev = {
+us_state = {
     'Alabama': 'AL',
     'Alaska': 'AK',
     'Arizona': 'AZ',
