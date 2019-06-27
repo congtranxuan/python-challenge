@@ -1,6 +1,5 @@
 import os
 import csv
- 
 
 #get the path to the csv data file
 csvpath = os.path.join("..",'..','..',"RICEHOU201906DATA1","HW","03-Python","Instructions","PyPoll","Resources","election_data.csv")
@@ -11,58 +10,45 @@ textpath = os.path.join("..","PyPoll","Election_Results.txt")
 with open(csvpath,newline ="") as csvfile:
     csvreader = csv.reader(csvfile,delimiter = ",")
     csvheader = next(csvreader)
-
-# set the initial value for memory variables   
     total_vote = 0        #used to calculate the number of votes
-    Khan_vote = 0         #used to calculate the Khan's votes      
-    Li_vote = 0           #used to calculate the Li's votes  
-    Correy_vote = 0       #used to calculate the Correy's votes
-    OTooley_vote = 0      #used to calculate the O'Tooley's votes
-   
+    Candidate = []        #stored the names of candidate  
+    Candidates_vote = []  #stored the candidates' votes
+    i = 0                 #used to represent the number of candidates
+    winner = ''
+    winner_vote = 0  
+    
     for row in csvreader:
-        total_vote +=1                   #every row represent for a vote
-        if row[2] =="Khan":
-            Khan_vote += 1
-        elif row[2] =="Li": 
-            Li_vote += 1
-        elif row[2] == "Correy":
-            Correy_vote += 1 
-        elif row[2] =="O'Tooley":
-            OTooley_vote +=1
-
-    if Khan_vote > Li_vote and Khan_vote > Correy_vote and Khan_vote > OTooley_vote:
-        winner = "Khan"
-    elif Li_vote > Khan_vote and Li_vote > Correy_vote and Li_vote > OTooley_vote:
-        winner ="Li" 
-    elif Correy_vote > Khan_vote and Correy_vote > Li_vote and Correy_vote > OTooley_vote:
-        winner = "Correy"  
-    else: winner = "O'Tooley"    
-
-
-    #print value to the screen
+        total_vote +=1                  #every row represents for a vote
+        if row[2] not in Candidate:     #if there is a new candidate, add to the list
+            i +=1                       #mark the number of candidates
+            Candidate.append(row[2])    #add name of candidate to the list
+            Candidates_vote.append(0)   #increase the candidates's vote list to 1 unit
+        for j in range(i):              #in the list
+            if Candidate[j] == row[2]: 
+                Candidates_vote[j] += 1
+            if Candidates_vote [j] > winner_vote:#if the candidate's vote is more than winner vote, update the winner
+                winner = Candidate[j]
+                winner_vote = Candidates_vote[j]
+       #print value to the screen
     print("Election Results")
     print("----------------------------")
     print("Total Votes: " + str(total_vote))
     print('----------------------------')
-    print("Khan: " +str(round(Khan_vote*100/total_vote))+".000%"+" ("+str(Khan_vote)+")")
-    print("Correy: " +str(round(Correy_vote*100/total_vote))+ ".000%" +" ("+str(Correy_vote) + ")")
-    print("Li: " +str(round(Li_vote*100/total_vote))+".000%"+" ("+str(Li_vote)+")")
-    print("O'Tooley: " +str(round(OTooley_vote*100/total_vote))+".000%"+" ("+str(OTooley_vote)+")")
+    for k in range(len(Candidate)):
+        print(str(Candidate[k])+": "+str(round(Candidates_vote[k]*100/total_vote))+".000%"+" ("+str(Candidates_vote[k])+")")
     print("----------------------------")
     print('Winner: '+str(winner))
     print("----------------------------")
 
-#Write the file named Financial Analysis.txt
+#Write the file named Election_Results.txt
 with open(textpath, 'w', newline='') as textfile:
     csvwriter = csv.writer(textfile)
     csvwriter.writerow(["Election Results"])                      #used [] to list
     csvwriter.writerow(['------------------------------------'])
     csvwriter.writerow(['Total Votes:  '+ str(total_vote)])
     csvwriter.writerow(['------------------------------------'])
-    csvwriter.writerow(["Khan: " +str(round(Khan_vote*100/total_vote))+".000%"+" ("+str(Khan_vote)+")"])
-    csvwriter.writerow(["Correy: " +str(round(Correy_vote*100/total_vote))+".000%"+" ("+str(Correy_vote)+")"])
-    csvwriter.writerow(["Li: " +str(round(Li_vote*100/total_vote))+".000%"+" ("+str(Li_vote)+")"])
-    csvwriter.writerow(["O'Tooley: " +str(round(OTooley_vote*100/total_vote))+".000%"+" ("+str(OTooley_vote)+")"])
+    for k in range(len(Candidate)):
+        csvwriter.writerow([str(Candidate[k])+": "+str(round(Candidates_vote[k]*100/total_vote))+".000%"+" ("+str(Candidates_vote[k])+")"])
     csvwriter.writerow(['------------------------------------'])
     csvwriter.writerow(['Winner: '+str(winner)])
     csvwriter.writerow(['------------------------------------'])
