@@ -6,9 +6,9 @@ I. Financial Analysis
 ![](Images/Financial_Analysis_text.png)
 
 ![](Images/Election_Results.png)
-![](Images/Electrion_Results_text.png)
+![](Images/Election_Results_text.png)
 
-![](Images/PyParagragh_Analysis.png)
-![](Images/PyParagrahp_Analysis_text.png)
+![](Images/PyParagraph_Analysis.png)
+![](Images/PyParagraph_Analysis_text.png)
 
 
