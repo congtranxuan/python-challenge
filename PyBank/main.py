@@ -40,7 +40,7 @@ with open(csvpath,newline ="") as csvfile:
     #print value to the screen
     print("Total Months: " + str(month))
     print("Total: $"+str(total))
-    print("Average  Change: $" + str(round(sumchange/85,2)))
+    print("Average  Change: $" + str(round(sumchange/(month-1),2)))
     print("Greatest Increase in Profits:"+ str(datemax)+ " "+ "($"+str(maxchange)+")")
     print("Greatest Decrease in Profits:"+ str(datemin)+ " "+ "($"+str(minchange)+")")
 
