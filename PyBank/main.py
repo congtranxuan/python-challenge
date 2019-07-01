@@ -51,7 +51,7 @@ with open(textpath, 'w', newline='') as textfile:
     csvwriter.writerow(['------------------------------------'])
     csvwriter.writerow(['Total Months: '+ str(month)])
     csvwriter.writerow(['Total: $'+str(total)])
-    csvwriter.writerow(["Average  Change: $" + str(round(sumchange/85,2))])
+    csvwriter.writerow(["Average  Change: $" + str(round(sumchange/(month-1),2))])
     csvwriter.writerow(["Greatest Increase in Profits:"+ str(datemax)+ " "+ "($"+str(maxchange)+")"])
     csvwriter.writerow(["Greatest Decrease in Profits:"+ str(datemin)+ " "+ "($"+str(minchange)+")"])
 
