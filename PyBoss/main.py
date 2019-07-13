@@ -3,7 +3,7 @@ import csv
 from us_states import us_state
 from split_string import split_str  
 
-csvpath = os.path.join("..",'..','..',"RICEHOU201906DATA1","HW","03-Python","ExtraContent","Instructions","PyBoss","employee_data.csv")
+csvpath = os.path.join("Resources","employee_data.csv")
 outputcsv = os.path.join("..","PyBoss","employee_newdata.csv")
 
 with open(csvpath, newline = "")as csvfile:

@@ -2,7 +2,7 @@ import os
 import csv
 from split_string import split_str
 
-filepath = os.path.join("..",'..','..',"RICEHOU201906DATA1","HW","03-Python","ExtraContent","Instructions","PyParagraph","raw_data","paragraph_1.txt")
+filepath = os.path.join("raw_data","paragraph_1.txt")
 outputpath = os.path.join("..","PyParagraph","Paragraph_Analysis.txt")
 with open(filepath,"r",newline ="")as csvfile:
     csvreader = csv.reader(csvfile,delimiter =",")

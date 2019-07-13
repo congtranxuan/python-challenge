@@ -2,7 +2,7 @@ import os
 import csv
 
 #get the path to the csv data file
-csvpath = os.path.join("..",'..','..',"RICEHOU201906DATA1","HW","03-Python","Instructions","PyPoll","Resources","election_data.csv")
+csvpath = os.path.join("Resources","election_data.csv")
 #create an output text file in the same folder with main.py
 textpath = os.path.join("..","PyPoll","Election_Results.txt")
 
@@ -23,7 +23,7 @@ with open(csvpath,newline ="") as csvfile:
             i +=1                       #mark the number of candidates
             Candidate.append(row[2])    #add name of candidate to the list
             Candidates_vote.append(0)   #increase the candidates's vote list to 1 unit
-        for j in range(i):              #in the list
+        for j in range(i):             
             if Candidate[j] == row[2]: 
                 Candidates_vote[j] += 1
             if Candidates_vote [j] > winner_vote:#if the candidate's vote is more than winner vote, update the winner
